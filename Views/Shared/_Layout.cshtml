@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - bookStore</title>
+    <link rel="stylesheet" href="~/css/concavo.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-header">
+                    <h4><a href="/">Odisea</a></h4>
+                    <small>Tu Portal Literario</small>
+                </div>
+            </div>
+            <ul class="nav-list">
+                <div class="logo">
+                    <div class="title">
+                        <div class="img">
+                            <img src="images/logo.png" alt="Logo" />
+                        </div>
+                        <div class="logo-header">
+                            <h4><a href="/">Odisea</a></h4>
+                            <small>Sitio Web de Librería</small>
+                        </div>
+                    </div>
+                    <button class="close"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <li><a href="/">Inicio</a></li>
+                <li>
+                    <a href="/Cart/ShoppingCart" class="cart-icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-controller="Book" asp-action="Listar">Libros</a></li>
+                    <li><a asp-controller="Book" asp-action="Ingresar">Agregar libro</a></li>
+                }
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="user-email">@User.Identity.Name</span>
+                    <a asp-controller="Autenticacion" asp-action="Salir" class="logout-link">Cerrar Sesión</a>
+                }
+                else
+                {
+                    <button class="login"><a asp-controller="Autenticacion" asp-action="Index">Iniciar Sesión</a></button>
+                    <button class="signup">
+                        <i class="fa-solid fa-user"></i><a asp-controller="Autenticacion"
+                            asp-action="Registrar">Registrarse</a>
+                    </button>
+                }
+
+
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+
+    <footer>
+        <div class="container">
+            <div class="logo-description">
+                <div class="logo">
+
+                    <div class="title">
+                        <h4>Odisea</h4>
+                        <small>Sitio Web de Librería</small>
+                    </div>
+                </div>
+                <div class="logo-body">
+                    <p>
+                        En Odisea, nos apasionan los libros y las historias que inspiran. Descubre una amplia selección
+                        de obras literarias para todos los gustos y déjanos acompañarte en tu próxima aventura
+                        literaria.
+                    </p>
+                </div>
+                <div class="social-links">
+                    <h4>Síguenos</h4>
+                    <ul class="links">
+                        <li>
+                            <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa-brands fa-youtube"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="categories list">
+                <h4>Categorías de Libros</h4>
+                <ul>
+                    <li><a href="Pages/book-filter.html">Acción</a></li>
+                    <li><a href="Pages/book-filter.html">Aventura</a></li>
+                    <li><a href="Pages/book-filter.html">Comedia</a></li>
+                    <li><a href="Pages/book-filter.html">Crimen</a></li>
+                    <li><a href="Pages/book-filter.html">Drama</a></li>
+                    <li><a href="Pages/book-filter.html">Fantasía</a></li>
+                    <li><a href="Pages/book-filter.html">Horror</a></li>
+                </ul>
+            </div>
+            <div class="quick-links list">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Sobre Nosotros</a></li>
+                    <li><a href="pages/contact.html">Contáctanos</a></li>
+                    <li><a href="pages/book-filter.html">Productos</a></li>
+                    <li><a href="pages/login.html">Iniciar Sesión</a></li>
+                    <li><a href="pages/registration.html">Registrarse</a></li>
+                    <li><a href="pages/cart-item.html">Carrito</a></li>
+                    <li><a href="pages/checkout.html">Pagar</a></li>
+                </ul>
+            </div>
+            <div class="our-store list">
+                <h4>Nuestra Tienda</h4>
+                <div class="map" style="margin-top: 1rem">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1950.236219453554!2d-77.04754570000001!3d-12.0517388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105ce3d62037d2b%3A0x69de2a256e222213!2sAv.%20Arica%203102%2C%20Bre%C3%B1a%2015023%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1686917463994!5m2!1ses!2spe"
+                        height="70" style="width: 100%; border: none; border-radius: 5px" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <ul>
+                    <li>
+                        <a href=""><i class="fa-solid fa-location-dot"></i>Av. Arica 3102, Breña,
+                            Lima, Perú</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-solid fa-phone"></i>+51 123456789</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa-solid fa-envelope"></i>support@bookoe.pe</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <button class="back-to-top"><i class="fa-solid fa-chevron-up"></i></button>
+    <partial name="_CartNotification" />
+    <partial name="_CartSidebar" />
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "77df033e-c0b9-45b9-aa62-3bd3883806e4",
+            region: "au-syd",
+            serviceInstanceID: "4cfedab9-e4b6-46be-a19d-2cb96237217f",
+            onLoad: async (instance) => { await instance.render(); }
+        };
+        setTimeout(function () {
+            const t = document.createElement('script');
+            t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+            document.head.appendChild(t);
+        });
+    </script>
+    <script src="~/js/cart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

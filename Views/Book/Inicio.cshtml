@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<bookStore.Models.Book>
+
+<link rel="stylesheet" href="~/css/concavo.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/cartSidebar.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<section class="hero">
+    <div class="main">
+        <div class="content">
+            <small>Regreso a clases</small>
+            <h2>50% de descuento especial</h2>
+            <h5>para nuestra comunidad estudiantil</h5>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
+                maiores? Eius culpa molestias expedita magni incidunt necessitatibus.
+            </p>
+            <div class="btns">
+                <button>Obtener la Oferta <i class="fa-solid fa-arrow-right"></i></button>
+                <button>Ver otras Promociones</button>
+            </div>
+        </div>
+        <div class="img">
+        </div>
+    </div>
+</section>
+<section class="offer">
+    <div class="header">
+        <h4>Ofertas Especiales</h4>
+<p>
+    Descubre nuestras promociones exclusivas en los mejores libros. 
+    ¡No te lo pierdas!
+</p>
+    </div>
+    <div class="offer-container">
+         @foreach (var item in Model)
+            {
+<div class="offer">
+            <div class="img">
+                <a href="Pages/book-detail.html"><img src="@item.ImageUrl" alt="@item.Name" /></a>
+            </div>
+            <div class="offer-content">
+                <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                <div class="genre">
+                    <span>biography</span>
+                    <span>thriller</span>
+                    <span>horror</span>
+                </div>
+                <p>
+                   
+                </p>
+                <small>@Html.DisplayFor(modelItem => item.Author)</small>
+                <div class="offer-bottom">
+                    
+                    <button onclick="addToCart(@item.Id)" class="cartbtn">
+                        <i class="fa-solid fa-cart-shopping"></i>Añadir al Carrito
+                    </button>
+                    <div class="price">
+                        <strong><span></span>@Html.DisplayFor(modelItem => item.Price)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+            }
+        
+        
+    </div>
+</section>
+
+
+
+<section class="sale">
+    <div class="header">
+        <h4>Oferta Relámpago en Odisea</h4>
+        <p>
+            Descubre descuentos exclusivos en los mejores libros. <br />
+            ¡Una oportunidad que no puedes dejar pasar!
+        </p>
+    </div>
+    <div class="timer">
+        <div class="hours">
+            <span id="hour"></span>
+            <small>Hours</small>
+        </div>
+        <div class="minutes">
+            <span id="minute"></span>
+            <small for="minute">Minutes</small>
+        </div>
+        <div class="seconds">
+            <span id="second"></span>
+            <small for="second">Seconds</small>
+        </div>
+    </div>
+    <div class="book-container">
+        @foreach (var item in Model.TakeLast(5))
+        {
+            <div class="book">
+                <div class="img">
+                    <a href="Pages/book-detail.html"><img src="@item.ImageUrl" alt="@item.Name" />
+                    </a>
+                </div>
+                <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                <small>Nuevos</small>
+                <div class="price">
+                    <span>@Html.DisplayFor(modelItem => item.Price)</span>
+                    <span><strike>@Html.DisplayFor(modelItem => item.Price)</strike></span>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+<script src="~/js/cart.js"></script>
+
+
